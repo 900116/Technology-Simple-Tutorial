@@ -575,23 +575,23 @@ print type(unicode_str)
 ``` 
 
 ### 字符串的常见API
-**count(str, beg=0, end=len(string))->int**
+**count(str, beg=0, end=len(string))->int**  
 在指定返回内查找子串出现的次数，默认是全字符串
 
-**join(seq)->str**
+**join(seq)->str**  
 
 ```
 a = ["1","2","3"]
 b = ",".join(a) #b的值为"1,2,3"
 ```
 
-**split(str="",num=string.count(str))->seq**
+**split(str="",num=string.count(str))->seq**  
 与join相反，num为拆分的个数，默认为所有
 
-**string.splitlines(keepends=False)->seq**
+**string.splitlines(keepends=False)->seq**  
 以`\n`拆分字符串，`keepends`是否保留换行符
 
-**index(substr,beg=0, end=len(string))->int**  
+**index(substr,beg=0, end=len(string))->int**    
 查找子串出现的位置，如果不在会`crash`
 
 **find(substr,beg=0, end=len(string))->int**  
