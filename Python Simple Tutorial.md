@@ -315,6 +315,8 @@ else:
 ```
 
 ### for-in
+`in`后面可以跟上一个序列（实现了`__iter__`方法的类，例如`str`,`tuple`,`list`,`dict`)
+
 ```
 fruits = ['banana', 'apple',  'mango']
 for fruit in fruits:        
@@ -416,3 +418,228 @@ else:
 - `seed(x)` 改变随机种子，不过`python会`自动帮你改变
 - `shuffle(seq)` 随机打乱序列
 - `uniform(x,y)` 在`>=x`到`<=y`之间随机取一个数
+
+### 字符串的值不能改
+字符串是不可变类型，一旦赋值将无法更改  
+换言之  
+`a[0] = 'x'`  
+是不合法的  
+你只能重新指向另一个变量   
+`a = "new value"` 
+
+### 序列切片
+可以通过切片语法访问序列的子序列（以字符串为例）  
+`seq[index]`    
+访问`index`位置的子序列，长度为1
+`index`可以为负数，如果`index`为负数，表示从后面往前获取,可以简单地理解为倒数第几个
+
+```
+a = "Hello"
+b = a[0]  # b的值为"H" 
+b = a[-1] # b的值为"o"
+```
+
+
+`seq[begin:end]`  
+访问`begin`开始到`end-1`的子序列   
+
+```
+b = a[2:4] # b的值为"ll"
+```
+
+如果省略`begin`，如`[:end]`，`begin`默认为0
+如果省略`end`,如`[begin:]`,`begin`默认为`len(seq)`  
+如果`begin`和`end`都省略，则表示将该序列拷贝   
+`begin`,`end`可以为负数，表示倒数第`begin`个~倒数第`end+1`个
+
+`seq[begin:end:step]`   
+访问`begin`开始到`end-1`,步长为step的子序列  
+
+```
+b = a[0:4:2] # b的值为"Hl"
+```
+
+如果省略`begin`，如`[:end:step]`，`begin`默认为0  
+如果省略`end`,如`[:end:step]`,`begin`默认为`len(seq)`   
+如果省略`step`,如`[begin:end:]`,`step`默认为`1`  
+如果都省略，则表示将该序列拷贝 
+
+你可以省略任何一个或者几个值  
+`[begin::]`,`[:end:]`,`[::step]`,`[::]`都是合法的。
+ 
+
+### 序列加法
+两个序列可以进行`+`和`+=`运算
+
+```
+a = "hello"  
+b = "world"  
+c = a+b  #c的值为"helloworld"
+```
+
+### 序列乘法
+序列可以与一个整数进行`*`和`*=`运算，其结果等于，序列的内容重复几次  
+
+```
+a = "Hello"
+b = a*2 #b的值为"HelloHello"
+```
+
+当然你也可以使用加法和乘法的组合运算
+
+
+### 序列 in 和 not in
+序列可以使用`in`和`not in` 判断一个序列是否是另一个序列的子序列
+
+```
+a = "Hello"
+b = "el" in a #b的值为True
+```
+
+### len函数
+`len(seq)->int`函数可以计算一个序列元素的个数
+
+```
+a = "Hello"  
+b = len(a)  #b的值为5
+```
+
+### 字符串的格式化
+字符串可以进行格式化的拼接  
+
+```
+a = 3
+aStr = "%d" % a #aStr的值为"3"
+b = 4
+c = "%d + %d = %d" % (a,b,a+b) 
+# c的值为 "3+4=7" 
+```
+
+`格式化字符串 % 数值`  
+如果有多个格式化数值，则后面需要跟着元组  
+`格式化字符串 % 元组`
+
+格式化字符串格式
+
+- `%c` 字符
+- `%s` 字符串
+- `%d` 整数
+- `%u` 无符号整数
+- `%o` 八进制
+- `%x` 十六进制
+- `%X` 十六进制大写
+- `%f` 浮点
+- `%e` 科学计数法，浮点
+- `%E` 与`%e`相同
+- `%g` `%f`和`%e`的简写
+- `%G` `%f`和`%E`的简写
+- `%p` 变量地址
+
+### 多行字符串
+字符串跨行需要使用`'''`三引号,当你处理大量文本（尤其是各种特殊符号）的时候，三引号能够解决程序员的噩梦
+
+```
+errHTML = '''
+<HTML><HEAD><TITLE>
+Friends CGI Demo</TITLE></HEAD>
+<BODY><H3>ERROR</H3>
+<B>%s</B><P>
+<FORM><INPUT TYPE=button VALUE=Back
+ONCLICK="window.history.back()"></FORM>
+</BODY></HTML>
+'''
+
+cursor.execute('''
+CREATE TABLE users (  
+login VARCHAR(8), 
+uid INTEGER,
+prid INTEGER)
+''')
+```
+
+### 字符串的转义
+`python`可以在字符串前面加`r`,对字符串中的`\`进行转义,这解决Windows系统的路径问题
+
+```
+my_dir = r'C:\a\b\c'
+#my_dir的值为 'C:\\a\\b\\c'
+```
+
+### Unicode 字符串
+`python`可以在字符串前面加`u`，定义一个`unicode`字符串
+
+```
+unicode_str = u'我'
+print type(unicode_str)
+#unicode_str的类型为'unicode'而非'str'
+``` 
+
+### 字符串的常见API
+**count(str, beg=0, end=len(string))->int**
+在指定返回内查找子串出现的次数，默认是全字符串
+
+**join(seq)->str**
+
+```
+a = ["1","2","3"]
+b = ",".join(a) #b的值为"1,2,3"
+```
+
+**split(str="",num=string.count(str))->seq**
+与join相反，num为拆分的个数，默认为所有
+
+**string.splitlines(keepends=False)->seq**
+以`\n`拆分字符串，`keepends`是否保留换行符
+
+**index(substr,beg=0, end=len(string))->int**  
+查找子串出现的位置，如果不在会`crash`
+
+**find(substr,beg=0, end=len(string))->int**  
+查找子串出现的位置，如果不在返回`-1`
+
+**isalnum()->bool**  
+所有字符都是字母或数字，并且长度大于等于`1`，返回`True`
+  
+**isalpha()->bool**  
+所有字符都是字母，并且长度大于等于`1`，返回`True`
+
+**isdigit()->bool**  
+所有字符都是数字，并且长度大于等于`1`，返回`True`
+
+**lower()->str**  
+将字符串的大写变小写
+
+**upper()->str**  
+将字符串的小写变大写
+
+**replace(str1,str2,num=string.count(str1)))->str**  
+将字符串中出现的str1,替换成str2,num为替换个数，默认为所有
+
+**maketrans(intab,outtab)->transtab**  
+**translate(transtab,del="")->str**   
+
+```
+intab = "aeiou"   #创建一个将a换成1，e换成2..的字典
+outtab = "12345"
+trantab = maketrans(intab, outtab)
+
+str = "this is string example....wow!!!"
+print str.translate(trantab)  
+#del为删除的字典key序列，默认为空
+# 输出th3s 3s str3ng 2x1mpl2....w4w!!!
+```
+
+**startswith(obj, beg=0, end=len(string))->bool**  
+前缀  
+
+**endswith(obj, beg=0, end=len(string))->bool**  
+后缀  
+
+**title()->str**   
+将文本中的单词首字符大写  
+
+**decode(encoding='UTF-8', errors='strict')->str**  
+以`encoding`指定的编码格式解码`string`如果出错默认报一个`ValueError`的异常,除非`errors`指定的是`'ignore'`或者`'replace'`
+
+**encode(encoding='UTF-8', errors='strict')->str**
+以`encoding`指定的编码格式编码`string`如果出错默认报一个`ValueError`的异常,除非`errors`指定的是`'ignore'`或者`'replace'`
