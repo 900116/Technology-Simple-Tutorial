@@ -342,8 +342,8 @@ for num in range(10,20):
 ```
 
 ### for-in-else
-如果`for`循环没有被`break`，则会在循环结束的时候，执行`else`块
-如果中途遇到`break`,则不会打印`else`块
+如果`for`循环没有被`break`，则会在循环结束的时候，执行`else`块   
+如果中途遇到`break`,则不会打印`else`块  
 
 ```
 for num in range(10,20):
