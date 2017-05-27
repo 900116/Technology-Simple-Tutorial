@@ -5,7 +5,7 @@
 #! /bin/bash
 echo "Hello World !"
 ```
-### 如果运行shell文件
+### 如何运行shell文件
 终端输入  
 `sh 脚本的文件名.sh`
 
