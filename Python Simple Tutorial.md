@@ -504,6 +504,32 @@ a = "Hello"
 b = len(a)  #b的值为5
 ```
 
+### sorted函数
+`sorted(seq, cmp=None, key=None, reverse=False)->seq`  
+函数可以返回一个参数排序后的序列  
+`cmp`为一个函数，`reverse`为是否反向比较,`key`为元素的比较属性，如果为空，表示元素自己   
+
+```
+a = [12,23,11,6,44]
+b = sorted(a)
+#b的值为[6, 11, 12, 23, 44]
+```
+
+### reversed类  
+`reversed`类可以根据一个序列，进行构造，通过`list`可以将其转化为一个倒叙的`list`
+```
+a = list(reversed('abcdef'))
+#a的值为['f', 'e', 'd', 'c', 'b', 'a']
+```
+
+### max函数  
+**max(seq,func=None)->obj**  
+`max`可以计算一个序列中的最大值  
+
+### min函数  
+**min(seq,func=None)->obj**  
+`min`可以计算一个序列中的最小值 
+
 ### 字符串的格式化
 字符串可以进行格式化的拼接  
 
@@ -643,3 +669,92 @@ print str.translate(trantab)
 
 **encode(encoding='UTF-8', errors='strict')->str**
 以`encoding`指定的编码格式编码`string`如果出错默认报一个`ValueError`的异常,除非`errors`指定的是`'ignore'`或者`'replace'`
+
+### 创建一个list
+```
+list1 = ['physics', 'chemistry', 1997, 2000];
+list2 = [1, 2, 3, 4, 5 ];
+list3 = ["a", "b", "c", "d"];
+```
+
+### 访问列表中的值
+```
+print "list1[0]: ", list1[0]
+print "list2[1:5]: ", list2[1:5]
+```
+
+### 更改列表的值
+```
+list1[1] = "english"
+list2[2:4] = [5,6] 
+#list2的值为 1，2，5，6，5
+```
+
+### 删除列表的值
+```
+del list1[3]
+```
+
+### 列表常见api
+**append(obj)**  
+在列表结尾添加一个元素  
+
+**count(obj)->int**  
+统计某个元素的个数  
+
+**extend(seq)**   
+在列表结尾追加另一个序列  
+
+**index(obj)->int**  
+找到该元素第一次出现的位置   
+
+**insert(idx,ojb)**  
+在指定位置插入元素
+
+**pop(obj=list[-1])**  
+删除匹配的第一个元素，默认(不加参数)是弹出最后一个  
+
+**remove(obj)**  
+删除匹配的第一个元素   
+
+**reversed()**  
+将列表反转  
+
+**sort(func)**  
+将列表排序  
+
+### 创建一个元组
+```
+tup1 = ('physics', 'chemistry', 1997, 2000);
+tup2 = (1, 2, 3, 4, 5 );
+tup3 = "a", "b", "c", "d";
+```
+
+### 访问元组
+```
+print tup1[0]  #值为"physics"
+print tup2[2:4] #值为(3,4)
+```
+
+### 元组组装和拆解   
+```
+tup = 404,'Not Found' 
+#python的元组不强制添加括号
+code,msg = tup
+tup2 = (code,msg)
+```
+
+### zip函数
+`zip(seq1,seq2,....)->seq`   
+该函数可以接受任意个序列为参数，
+并且将这些序列打包成一个元组序列返回  
+
+```
+list1 = ["name","age"]
+list2 = ["zhangsan","15"]
+lt = zip(list1,list2)
+#tl的值为[('name', 'zhangsan'), ('age', '15')]
+#如果你的序列恰好是两个,你还可以将它转换成为字典
+d = dict(lt)
+#d的值为 {'age': '15', 'name': 'zhangsan'}
+```
